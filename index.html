@@ -4,35 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <img id="pupil" src="Diamond.png">
-    
-    <style>
-        body{
-            background-image: url(Background.png);
-            background-size:cover;
-            margin:0 auto;
-            
-        }
-    </style>
-
-    <script>
-        var pupil = document.getElementById('pupil')
-        var w=innerWidth
-        var h=innerHeight
-        var scaleX=200
-        var scaleY=100
-        
-        document.addEventListener('mousemove', (e)=>{
-            const yMult=Math.cos((w/2-e.clientX)/960*Math.PI/2.5)
-            const x = (e.clientX-w/2)*scaleX/w+w/2
-            const y= (e.clientY-h/2)*scaleY*yMult/h+h/2
-            pupil.style.transform = `translate(${x-pupil.offsetWidth/2}px, ${y-pupil.offsetHeight/2}px)`
-        })      
-
-
-
-    </script>
+    <img id="pupil" src="Diamond.png">
+    <script src="main.js"></script>
 </body>
 </html>
