@@ -3,15 +3,21 @@ const w=innerWidth;
 const h=innerHeight;
 const scaleX=200;
 const scaleY=100; 
-const idleTime=3000;
-const idleRepeat=3000;
+const idleTime=2000;
 const idleThreshold=0.2;
-const speed=500;
 
-var currentX,currentY;
+const followDuration=400;
+const resetDuration=1000;
+const idleDuration=1000;
 
+const followEase="ease";
+const resetEase="cubic-bezier(0.5,0,0.5,1)"
+const idleEase="cubic-bezier(0.3,0,0.5,1)"
 
 animate(w/2,h/2);
+
+var duration=resetDuration;
+var ease=resetEase;
 
 var idle=false;
 var idleTimer = setTimeout(1);
@@ -27,11 +33,18 @@ function animate(x,y){
     pupil.animate({
         left: `${x}px`,
         top: `${y}px`
-    },{duration: speed, fill: "forwards"});
+    },{duration: duration, fill: "forwards", easing: ease});
+}
+
+function calcDuration(x,y){
+    var distance = Math.sqrt(Math.pow((x-currentX),2)+Math.pow((y-currentY),2));
+    
+    return distance/speed;
 }
 
 document.addEventListener("mousemove", function(e){
     idle=false;
+    setTimeout(()=>{duration=followDuration; ease=followEase;},500);
     animate(e.clientX, e.clientY);
     resetTimer();
 });
@@ -39,25 +52,35 @@ document.addEventListener("mousemove", function(e){
 
 function resetTimer() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(idleAnim,idleTime);
+    idleTimer = setTimeout(startIdle,idleTime);
 }
 
-function idleAnim() {
+function random(min,max){
+    return Math.random()*(max-min)+min;
+}
+
+function pm(){
+    if(Math.random()>0.5) return 1;
+    else return -1;
+}
+
+function startIdle() {
     idle=true;
-    var xMult=Math.random();
-    var yMult=Math.random();
-    var x,y;
+    duration=resetDuration;
+    ease=resetEase;
+    animate(w/2,h/2);
 
-    console.log(xMult+"     "+yMult+"\n"+(xMult+yMult))
+    let i=Math.floor(random(2,3.5))
+    idleTimer = setTimeout(()=>{idleRoam(i);},random(8000,16000))
+}
 
-    if((Math.abs(.5-xMult)<idleThreshold)&&(Math.abs(.5-yMult)<idleThreshold)){
-        x=w/2;
-        y=h/2;
-    }
-    else{
-        x=xMult*w;
-        y=yMult*h;
-    }
-    animate(x,y);
-    var idleRepeatTimer = setTimeout(()=>{if(idle)idleAnim();},idleRepeat)
+function idleRoam(i){
+    console.log(i);
+    if(i>0){
+        duration=idleDuration;
+        ease=idleEase;
+        animate((0.5+pm()*(random(.2,.5)))*w,(0.5+pm()*(random(.2,.5)))*h)
+        idleTimer = setTimeout(()=>{idleRoam(i-1);},random(2000,3500))
+    }   
+    else startIdle();
 }
