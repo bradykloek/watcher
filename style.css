@@ -1,7 +1,7 @@
 :root{
     --pupilRad: 20px;
-    --circleRad: 33px;
-    --circleBorder: 1px;
+    --circleRad: 30px;
+    --circleBorder: 1.3px;
 }
 
 body{
@@ -14,8 +14,6 @@ body{
     position:fixed;
     width: calc(var(--pupilRad)*2);
     height: calc(var(--pupilRad)*2);
-    border: 1px solid red;
-    border-radius: 50%;
     translate: -50% -50%;
 }
 
@@ -26,5 +24,4 @@ body{
     border: var(--circleBorder) solid white;
     border-radius: 50%;
     translate: calc(var(--pupilRad) - var(--circleRad) - var(--circleBorder)) calc(var(--pupilRad) - var(--circleRad) - var(--circleBorder));
-
 }
