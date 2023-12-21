@@ -1,3 +1,9 @@
+:root{
+    --pupilRad: 20px;
+    --circleRad: 33px;
+    --circleBorder: 1px;
+}
+
 body{
     background-image: url(Background.png);
     background-size:cover;
@@ -6,5 +12,19 @@ body{
 
 #pupil{
     position:fixed;
-    transform: translate(-50%,-50%);
+    width: calc(var(--pupilRad)*2);
+    height: calc(var(--pupilRad)*2);
+    border: 1px solid red;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
+
+.circle{
+    position:fixed;
+    width: calc(var(--circleRad)*2);
+    height: calc(var(--circleRad)*2);
+    border: var(--circleBorder) solid white;
+    border-radius: 50%;
+    translate: calc(var(--pupilRad) - var(--circleRad) - var(--circleBorder)) calc(var(--pupilRad) - var(--circleRad) - var(--circleBorder));
+
 }
