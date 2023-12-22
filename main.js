@@ -20,7 +20,7 @@ const followEase="ease";
 const resetEase="cubic-bezier(0.5,0,0.5,1)"
 const idleEase="cubic-bezier(0.3,0,0.5,1)"
 
-const dilateTimeScale=5;
+const dilateTimeScale=10;
 
 var duration=resetDuration;
 var ease=resetEase;
@@ -30,12 +30,14 @@ var idle=false;
 var moving=false;
 var idleTimer = setTimeout(1);
 
+var counter=15;
+
 var distance;
 const maxDist=Math.sqrt(Math.pow((w/2),2)+Math.pow((h/2),2));
 
+pupil.style.left = `${w/2}px`;
+pupil.style.top = `${h/2}px`;
 startIdle();
-
-
 
 function animate(x,y){
     distance=Math.sqrt(Math.pow((x-w/2),2)+Math.pow((y-h/2),2));
@@ -78,6 +80,8 @@ function pm(){
 }
 
 function startIdle() {
+    counter--;
+    if(counter<1) setTimeout(()=>{location.reload();},1005);
     idle=true;
     duration=resetDuration;
     ease=resetEase;
