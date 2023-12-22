@@ -4,14 +4,21 @@
     --circleBorder: 1.3px;
 }
 
+
 body{
-    background-image: url(Background.png);
+    background-image: url(Background_16x9.png);
     background-size:cover;
     margin:0 auto;
     display: flex;
     justify-content: center; 
     align-items: center;     
     height: 100vh;           
+}
+
+@media (max-aspect-ratio: 16/10) {
+    body {
+        background-image: url(Background_16x10.png);
+    }
 }
 
 #pupil{
