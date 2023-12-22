@@ -2,6 +2,7 @@
     --pupilRad: 20px;
     --circleRad: 30px;
     --circleBorder: 1.3px;
+    --scaling: 1;
 }
 
 
@@ -18,6 +19,10 @@ body{
 @media (max-aspect-ratio: 16/10) {
     body {
         background-image: url(Background_16x10.png);
+        --scaling: 0.75;
+        --pupilRad: 16px;
+        --circleRad: 24px;
+        --circleBorder: 1px;
     }
 }
 

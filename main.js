@@ -1,14 +1,16 @@
 const pupil = document.getElementById('pupil');
 const circles = document.getElementsByClassName("circle");
+const style = window.getComputedStyle(document.body);
+const scaling = style.getPropertyValue('--scaling');
 const w=innerWidth;
 const h=innerHeight;
-const scaleX=190;
-const scaleY=80; 
+const scaleX=200*scaling;
+const scaleY=80*scaling; 
 const idleTime=2000;
 const idleThreshold=0.2;
 const angle = 2*Math.PI/circles.length;
-const followRad=19;
-const idleRad=15;
+const followRad=19*scaling;
+const idleRad=15*scaling;
 const minScale=0.91;
 
 const followDuration=400;
