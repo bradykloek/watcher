@@ -53,7 +53,8 @@ function animate(x,y){
     pupil.animate({
         left: `${x}px`,
         top: `${y}px`,
-        scale: `${.99-(1-minScale)*distance/maxDist}`            //.99 to make it so the pupil is never at full scale, solving an issue where the graphic looked slightly different in each state
+        scale: `${.99-(1-minScale)*distance/maxDist}`            
+        //.99 to make it so the pupil is never at full scale, solving a visual bug where the graphic looked slightly different in each state
     },{duration: duration, fill: "forwards", easing: ease});
     distributeCircles();
 }

@@ -16,6 +16,7 @@ body{
     height: 100vh;           
 }
 
+/* Choose the alternate background image if the aspect ratio is 16x10 */
 @media (max-aspect-ratio: 16/10) {
     body {
         background-image: url(Background_16x10.png);
