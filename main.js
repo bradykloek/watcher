@@ -8,8 +8,6 @@ const scaleX=200*scaling;
 const scaleY=80*scaling; 
 const maxCenterDistance = Math.sqrt(Math.pow((width/2),2)+Math.pow((height/2),2));  // The furthest distance from the center
 
-
-
 const movingRadius=19*scaling;
 const movingDuration = 1500;
 const movingEase="cubic-bezier(0.3,0,0.5,1)";
@@ -19,7 +17,6 @@ const idleDuration = 1500;
 const idleEase="cubic-bezier(0.5,0,0.5,1)";
 
 const minScale=0.9;
-
 
 const dilateStepSize=10;
 var currentRadius = idleRadius;
