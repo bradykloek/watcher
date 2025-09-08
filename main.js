@@ -23,7 +23,11 @@ var currentRadius = idleRadius;
 
 const idleTime=2000;
 let idle = true;
-let idleTimeout = setTimeout(1);
+let idleTimeout = setTimeout(0);
+let dilationTimeout = null;
+
+const distributionInterval = 1000/60;   // Circles are distributed at 60fps
+let lastDistributionTime = 0;
 
 // Initial Setup: pupil is centered and idling is started
 pupil.style.left = `${width/2}px`;
@@ -69,8 +73,6 @@ function random(min,max){
     return Math.random()*(max-min)+min;
 }
 
-
-
 function startIdle() {
     idle=true;
     animatePupil(width/2,height/2, idleDuration, idleEase);   // Animate back to center
@@ -108,22 +110,34 @@ function pupilRoam(numLocations, startX, startY){
 }
 
 function distributeCircles(){
+    now = performance.now();
+    if(now - lastDistributionTime > distributionInterval){
+        lastDistributionTime = now;
         angle = 2*Math.PI/circles.length;
         for(var i = 0 ; i<circles.length ; i++){
             circles[i].style.transform = `translate(${currentRadius*Math.cos(i*angle)}px,${currentRadius*Math.sin(i*angle)}px) `
         }
+    }
     requestAnimationFrame(distributeCircles);
 }
 
 function dilate(newRadius, time){
-    var change = dilateStepSize * (newRadius-currentRadius) / time;
-    dilateChange(time, change);
+    if(dilationTimeout){
+        clearTimeout(dilationTimeout);
+        dilationTimeout = null;
+    }
+    change = dilateStepSize * (newRadius-currentRadius) / time;
+    dilateChange(newRadius, time, change);
 }
 
-function dilateChange(time, change){
+function dilateChange(newRadius, time, change){
     if(time>0){
         time -= dilateStepSize;
         currentRadius += change;
-        setTimeout(()=>{dilateChange(time,change)},dilateStepSize);
+        dilationTimeout = setTimeout(()=>{dilateChange(newRadius, time,change)},dilateStepSize);
+    }
+    else {
+        currentRadius = newRadius;  // The incrementing process likely didn't lead to currentRadius being exactly newRadius
+        dilationTimeout = null;
     }
 }
