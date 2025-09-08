@@ -1,6 +1,6 @@
 This is a Live Wallpaper intended to be used with [Lively Wallpaper](https://apps.microsoft.com/detail/9ntm2qc6qws7?hl=en-US&gl=US) for Windows. It features an animated eye that follows the user's mouse and animates randomly when idle.
 
-![Demonstration Gif](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWo3c2J5bmZhMnRkNHdrbTF6b253Z21udzM3MGpsd2t0OXNtbTlyZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fwCmID8mgqrd5PpjLQ/giphy.gif)
+![Demonstration Gif](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnZ4NGp2N3RxazN5MWczMGhmcGRweGJzNzZnN3lhMThva3FqaXJmYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UbTIBNbMDCMdYnhf4T/giphy.gif)
 
 ## Installation
 1. Download [Lively Wallpaper](https://apps.microsoft.com/detail/9ntm2qc6qws7?hl=en-US&gl=US)
