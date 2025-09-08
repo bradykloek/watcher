@@ -32,6 +32,7 @@ let lastDistributionTime = 0;
 // Initial Setup: pupil is centered and idling is started
 pupil.style.left = `${width/2}px`;
 pupil.style.top = `${height/2}px`;
+distributeCircles();    // This begins an animation loop
 startIdle();
 
 function animatePupil(x,y,duration,easing){
@@ -48,7 +49,6 @@ function animatePupil(x,y,duration,easing){
          * appears slightly different from any other scale due to pixel alignment. */
         
     },{duration: duration, fill: "forwards", easing: easing});
-    distributeCircles();
 }
 
 function distance(x0,y0,x1,y1){
@@ -101,8 +101,8 @@ function pupilRoam(numLocations, startX, startY){
         while(centerDistance < maxCenterDistance * 0.2){
             newX = randomRange(0,width);
             newY = randomRange(0,height);
+            centerDistance = distance(startX, startY, newX, newY); 
         }
-        console.log(centerDistance);
         animatePupil(newX,newY, movingDuration, movingEase)
         idleTimeout = setTimeout(()=>{pupilRoam(numLocations-1,newX, newY);},random(2000,3500))
     }   
